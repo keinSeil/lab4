@@ -1,4 +1,15 @@
 import socket
+import sys
+sys.path.append(r'C:\Users\Lukas Homann\PycharmProjects\RoboticsLab3\FANUC-Ethernet_IP_Drivers\src')
+
+from robot_controller import robot
+
+#Wifi ngrobot5G
+#Password 86624107Bb
+
+#Global Constants
+drive_path = '172.29.209.124' #Beaker
+sleep_time = 0.5
 
 # Define the server address (IP and port)
 server_ip = 'your_server_ip'  # Replace with your actual server IP address
