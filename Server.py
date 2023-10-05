@@ -1,31 +1,44 @@
 import socket
+from robot_controller import robot
+import sys
 
-# Define the server address (IP and port)
-server_ip = '129.101.119.223'  # Replace with your actual server IP address
-server_port = 5000  # Replace with the port you want to use
+#Wifi ngrobot5G
+#Password 86624107Bb
 
-# Create a socket object
+#Global Constants
+drive_path = '172.29.209.123' #Bunsen
+sleep_time = 0.5
+
+# Define server details
+server_ip = 'your_server_ip'  # IP of Computer B
+server_port = 5000
+
+def transform_coordinates(coords):
+    # Transformation logic here
+    # Return the transformed coordinates
+    return coords
+
+# Set up the server socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Bind the socket to the server address
 server_socket.bind((server_ip, server_port))
-
-# Listen for incoming connections (maximum 1 connection in this example)
 server_socket.listen(1)
-print(f"Server listening on {server_ip}:{server_port}")
+print("Server listening for incoming connections...")
 
-# Accept a client connection
-client_socket, client_address = server_socket.accept()
-print(f"Accepted connection from {client_address}")
+while True:
+    # Wait for a connection from a client (Computer A)
+    client_socket, client_address = server_socket.accept()
 
-# Receive data from the client
-data = client_socket.recv(1024)
-print(f"Received data: {data.decode('utf-8')}")
+    # Receive the data (coords) sent from the client
+    data = client_socket.recv(1024).decode('utf-8')
+    received_coords = tuple(map(int, data.split(',')))
 
-# Send a response to the client
-response = "Hello from the server!"
-client_socket.send(response.encode('utf-8'))
+    # Transform the received coordinates
+    translated_coords = transform_coordinates(received_coords)
 
-# Close the client and server sockets
-client_socket.close()
-server_socket.close()
+    # Here, you would send the translated_coords to Robot B
+    # But for now, let's just send an acknowledgment back to the client
+    ack_message = "Coordinates received and processed!"
+    client_socket.send(ack_message.encode('utf-8'))
+
+    # Close the connection to the client
+    client_socket.close()
