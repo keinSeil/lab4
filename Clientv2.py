@@ -1,5 +1,7 @@
 import socket
 import sys
+sys.path.append(r'C:\\Users\\Wes\\Documents\\GitHub\\fanuc_ethernet_ip_drivers\\src')
+
 from robot_controller import robot
 import time
 
@@ -7,11 +9,11 @@ import time
 #Password 86624107Bb
 
 #Global Constants
-drive_path = '172.29.209.124' #Beaker
+drive_path = '172.29.208.124' #Beaker
 sleep_time = 0.5
 
 # Define the server address (IP and port)
-server_ip = '172.29.209.8'  # Replace with your actual server IP address
+server_ip = '172.29.208.79'  # Replace with your actual server IP address
 server_port = 5000  # Replace with the port you want to use
 
 def send_coords_to_server(coords):
@@ -19,6 +21,7 @@ def send_coords_to_server(coords):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Connect to the server
+    # client_socket.connect(('0.0.0.0', server_port))
     client_socket.connect((server_ip, server_port))
 
     # Convert the coordinates to a string format and send to the server

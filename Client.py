@@ -1,6 +1,9 @@
 import socket
 import sys
-sys.path.append(r'C:\Users\Lukas Homann\PycharmProjects\RoboticsLab3\FANUC-Ethernet_IP_Drivers\src')
+# sys.path.append(r'C:\Users\Lukas Homann\PycharmProjects\RoboticsLab3\FANUC-Ethernet_IP_Drivers\src')
+# sys.path.append('../FANUC-Ethernet_IP_Drivers_Gates/src')
+# sys.path.append('.../fanuc-ethernet_ip_drivers/src')
+sys.path.append(r'C:\\Users\\Wes\\Documents\\GitHub\\fanuc_ethernet_ip_drivers\\src')
 
 from robot_controller import robot
 
@@ -8,11 +11,12 @@ from robot_controller import robot
 #Password 86624107Bb
 
 #Global Constants
-drive_path = '172.29.209.124' #Beaker
+drive_path = '172.29.208.124' #Beaker
 sleep_time = 0.5
 
 # Define the server address (IP and port)
-server_ip = 'your_server_ip'  # Replace with your actual server IP address
+# server_ip = '172.29.208.79'  # Replace with your actual server IP address
+server_ip = '0.0.0.0'  # Replace with your actual server IP address
 server_port = 5000  # Replace with the port you want to use
 
 def send_coords_to_server(coords):
@@ -33,6 +37,8 @@ def send_coords_to_server(coords):
     # Close the client socket
     client_socket.close()
 
-# Assuming you've already obtained the coords as in the previous code:
-coords = moveToRandomLocation(robotA)
-send_coords_to_server(coords)
+    crx10 = robot()
+
+# # Assuming you've already obtained the coords as in the previous code:
+# coords = moveToRandomLocation(robotA)
+# send_coords_to_server(coords)
